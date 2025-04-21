@@ -28,7 +28,7 @@ const Welcome = () => {
             backgroundImage: `url('/img/start/startBack-0.jpg')`,
           }}
         >
-          <audio ref={audioRef} src="/audio/581.mp3" preload="auto" loop />
+          <audio ref={audioRef} src="/audio/581.opus" preload="auto" loop />
           <h1
             class="text-4xl md:text-5xl font-bold mb-2
                     bg-gradient-to-r from-pink-300 via-purple-400 to-blue-400
