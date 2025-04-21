@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "words",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -9,6 +9,10 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.7.4"
+    "@astrojs/preact": "^4.0.9",
+    "@tailwindcss/vite": "^4.1.4",
+    "astro": "^5.7.4",
+    "preact": "^10.26.5",
+    "tailwindcss": "^4.1.4"
   }
 }
