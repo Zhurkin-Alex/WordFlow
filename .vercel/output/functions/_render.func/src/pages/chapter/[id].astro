@@ -1,0 +1,21 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ChapterScreen from '../../components/ChapterScreen.tsx';
+import chapters from '../../data/chapters.ts';
+import "../../styles/global.css";
+
+const { id } = Astro.params;
+const chapterId = parseInt(id ?? "1");
+const chapter = chapters.find((c) => c.id === chapterId);
+---
+
+<Layout title={chapter?.title ?? "Глава не найдена"}>
+  {chapter ? (
+    <ChapterScreen chapter={chapter} client:load />
+  ) : (
+    <div class="min-h-screen flex flex-col items-center justify-center text-white bg-black/80 text-center gap-6 px-6">
+      <h2 class="text-3xl font-bold">⚠️ Chapter not found</h2>
+      <a href="/" class="mt-4 bg-yellow-500 px-4 py-2 rounded-xl">← Вернуться в меню</a>
+    </div>
+  )}
+</Layout>

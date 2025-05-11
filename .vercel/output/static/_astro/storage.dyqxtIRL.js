@@ -1,0 +1,1 @@
+const t={currentChapter:1,currentScene:0,knownWords:{},completedChapters:[],userSettings:{sound:!0,language:"ru"}},a=()=>{if(typeof window>"u")return t;const e=localStorage.getItem("escape-word-lab");return e?JSON.parse(e):structuredClone(t)},r=e=>{localStorage.setItem("escape-word-lab",JSON.stringify(e))};export{a as g,r as s};
