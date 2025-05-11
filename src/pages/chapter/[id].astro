@@ -9,7 +9,7 @@ const chapterId = parseInt(id ?? "1");
 const chapter = chapters.find((c) => c.id === chapterId);
 ---
 
-<Layout>
+<Layout title={chapter?.title ?? "Глава не найдена"}>
   {chapter ? (
     <ChapterScreen chapter={chapter} client:load />
   ) : (

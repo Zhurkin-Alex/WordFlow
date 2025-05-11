@@ -1,38 +1,35 @@
 /** @jsxImportSource preact */
 
-import { useEffect, useRef } from "preact/hooks";
+import { useEffect, useRef, useState } from "preact/hooks";
 import { getGameData, saveGameData } from "../lib/storage";
+import ChapterMapModal from "./ChapterMapModal";
 
 const Welcome = () => {
     const audioRef = useRef<HTMLAudioElement | null>(null);
-    useEffect(() => {
-        const playAudio = () => {
-          const audio = audioRef.current;
-          if (audio) {
-            audio.volume = 0.4; // по желанию
-            audio.play().catch((err) => {
-              console.warn("err", err);
-            });
-          }
-        };
-
-        document.addEventListener('click', playAudio, { once: true });
-
-        return () => {
-            document.removeEventListener('click', playAudio);
-        };
-    }, []);
+    const [showMap, setShowMap] = useState(false);
 
     const handleStart = () => {
-        const game = getGameData();
-        if (!game.currentChapter) {
-          game.currentChapter = 1;
-          game.currentScene = 0;
-          saveGameData(game);
+      setShowMap(true);
+    };
+  
+    useEffect(() => {
+        const audio = window.document.getElementById('bg-music') as HTMLAudioElement | null;
+        if (audio) {
+          audio.volume = 1;
+          audio.play().catch(() => {});
         }
+    }, []);
+
+    // const handleStart = () => {
+    //     const game = getGameData();
+    //     if (!game.currentChapter) {
+    //       game.currentChapter = 1;
+    //       game.currentScene = 0;
+    //       saveGameData(game);
+    //     }
       
-        window.location.href = `/chapter/${game.currentChapter}`;
-      };
+    //     window.location.href = `/chapter/${game.currentChapter}`;
+    //   };
     return (
         <div
           class="min-h-screen bg-cover bg-center flex flex-col items-center justify-center text-white text-center px-4 gap-[190px]"
@@ -40,7 +37,7 @@ const Welcome = () => {
             backgroundImage: `url('/img/start/startBack-0.jpg')`,
           }}
         >
-          <audio ref={audioRef} src="/audio/581.opus" preload="auto" loop />
+          {showMap && <ChapterMapModal onClose={() => setShowMap(false)} />}
           <h1
             class="text-4xl md:text-5xl font-bold mb-2
                     bg-gradient-to-r from-pink-300 via-purple-400 to-blue-400
