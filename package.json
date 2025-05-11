@@ -19,5 +19,8 @@
     "tailwindcss": "^4.1.4"
   },
   "private": true,
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@astrojs/node": "^9.2.1"
+  }
 }
