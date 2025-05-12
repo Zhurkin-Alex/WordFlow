@@ -2,11 +2,13 @@
 import { defineConfig } from 'astro/config';
 import preact from '@astrojs/preact';
 import tailwindcss from '@tailwindcss/vite';
-import node from '@astrojs/node'; // 👈 Меняем адаптер
+import vercel from '@astrojs/vercel/serverless';
 
 export default defineConfig({
   integrations: [preact()],
-  adapter: node({ mode: 'standalone' }), // 👈 Используем Node адаптер
+  adapter: vercel({
+    edgeMiddleware: true,
+  }),
   output: 'server',
   build: {
     serverEntry: 'entry.mjs',
